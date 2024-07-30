@@ -1,0 +1,152 @@
+% Document packages / layout
+\documentclass[a4paper,11pt]{article}
+
+% Load packages 
+\input{meta/packages}
+
+% Load Notation
+\input{meta/notation}
+
+
+% Add Bibliography Sources 
+%\addbibresource[glob]{Bib/*.bib}
+\addbibresource{references.bib}
+
+\begin{document}
+
+\title{%
+  Continuous Sensor Placement for the Optimal Design of Bayesian Inverse Problems
+}
+\author{%
+  Abhijit Chowdhary
+}
+\maketitle
+
+% Add table of Contents
+%\tableofcontents
+
+\section{Infinite Dimensional Bayesian Inverse Problems}
+\label{sec:infinite-dimensional-bayesian-inverse-problems}
+
+Let us first define the inverse problem to set some common notation.
+
+We consider the problem of inferring a distribution on a parameter of interest from
+measurement data and a given simulation model. In particular, we intend to learn about
+an inversion parameter $\invparam \in \paramspace$ from data $\obs \in \dataspace$ from
+a model $\POM(\invparam)$ that related $\invparam$ to the data via the relationship
+\begin{equation} \label{eq:data-model}
+  \obs = \POM(\invparam) + \noise
+\end{equation}
+Here, $\noise$ is a random vector quantifying measurement and model error independent of
+$\invparam$, distributed as $\mc{N}(0, \noisecov)$, where $\noisecov$ is a
+positive-definite covariance operator. The operator $\POM: \paramspace \to \dataspace$
+is what we denote as the parameter-to-observable map and typically involves the
+composition of a simulation model and observation operator. That is
+\begin{equation}
+  \POM(\invparam) = \Obs \circ \Sim(\invparam)
+\end{equation}
+$\Sim: \paramspace \to \statespace$ is a simulation model that maps the parameter to a
+state space $\statespace$ and $\Obs: \statespace \to \dataspace$ is an observation
+operator that maps the state space to the data space. We will assume $\paramspace$ and
+$\statespace$ are infinite-dimensional Hilbert spaces that represent function spaces.
+Finally, let us define $\domain = {\rm domain}(\state)$ to be the common domain of all
+functions $\state \in \statespace$. 
+
+We denote by $\likelihood(\obs | \invparam)$ the distribution of data $\obs$ given 
+$\invparam$ under the model \cref{eq:data-model}. Considering the additive regime
+detailed, we have that $\obs | \invparam \sim \mc{N}(\POM(\invparam), \noisecov)$, that is:
+\begin{equation} \label{eq:likelihood}
+  \likelihood(\obs | \invparam) 
+  \propto
+  \exp \left(
+    -\frac{1}{2} \norm{\obs - \POM(\invparam)}_{\noisecovinv}^2
+  \right).
+\end{equation}
+Finally, we assume a Gaussian prior measure $\priormeasure = \mc{N}(\priormean,
+\priorcov)$ with $\priormean \in \paramspace$ and $\priorcov$ a strictly positive
+self-adjoint operator of trace class. We define the Cameron-Martin space of
+$\priormeasure$ as the subspace $\cameronmartin = {\rm range}(\priorcovsqrt)$.
+This is endowed with the inner product
+\begin{equation}
+  \label{eq:cameron-martin-inner-product}
+  \ip{x}{y}_{\cameronmartin} = \ip{\priorcovinvsqrt x}{\priorcovinvsqrt y}_{\paramspace}
+  , \quad x, y \in \cameronmartin
+\end{equation}
+Finally, we assume $\priormean \in \cameronmartin$.
+
+These assumptions on the data model and prior, along with Bayes' rule, define a
+posterior measure $\postmeasure(\invparam | \obs)$ on $\paramspace$ given by the
+Radom-Nikodym derivative
+\begin{equation}\label{eq:bayes}
+  \dv{\postmeasure}{\priormeasure}
+  \propto \likelihood(\obs | \invparam)
+\end{equation}
+
+\section{OED for a Binary Design}
+\label{sec:binary-oed}
+Let us now turn to the question of the optimal sensor placement for the above Bayesian
+inverse problem. The binary formulation is typically developed as follows. Suppose we
+have an initial set of $\Ndata$ sensors distributed throughout $\Omega$ that can be
+activated or deactivated. Then, let $\design \in \designspace$ be a binary vector where
+an active $i$th sensor corresponds to $\design_i = 1$ and an inactive sensor corresponds
+to $\design_i = 0$. Finally, let us assume that we have a sensor budget of $\Nbudget$.
+Then, the optimal design $\optdesign$ is the solution of the optimization problem
+\begin{gather}
+  \label{eq:binary-oed}
+  \max_{\design \in S(N_b)} \utility(\design)
+  \\
+  S(N_b) = \{\design \in \designspace : |\design| = \Nbudget\}
+\end{gather}
+where $\utility: \designspace \to \R$ is some utility function that quantifies the
+quality of the inverse problem solved according to the given design. 
+
+\section{OED for a Continuous Design}
+\label{sec:continuous-oed}
+Now, let us formulate a continuous design problem for the optimal sensor placement. We
+would like to place $\Nbudget$ sensors somewhere in $\Omega$ to maximize some utility.
+Instead of considering which $\Nbudget$ sensors out of a pool of $\Ndata$ sensors to
+activate, let us instead consider a continuous design space where $\design_i \in
+\Omega$. That is, $\design_i$ corresponds to the coordinates of the location of the
+$i$th sensor in $\Omega$. For example, if $\Omega \in [0,1]$ and $\Nbudget = 1$, then
+the design $\design = (0.5)$ could correspond to placing a sensor at the center of the
+domain.
+
+With this formulation, we would instead seek an optimal design $\optdesign \in
+\Omega^{\Nbudget}$ that solves the optimization problem
+\begin{equation}
+  \label{eq:continuous-oed}
+  \max_{\design \in \Omega^{\Nbudget}} \utility(\design)
+\end{equation}
+There are a couple of critical benefits to this formulation. 
+\begin{itemize}
+  \item The continuous design space allows for a more flexible design space that can
+    capture more complex sensor placements, away from the 'grid' of the binary design.
+  \item The continuous search space enables gradient-based optimization methods to be
+    used to solve the optimization problem. These are often much more efficient than
+    combinatorial optimization methods used for \cref{eq:binary-oed}.
+  \item Optimization occurs in space which has dimension $\Nbudget \times \dim(\Omega)$,
+    which is typically much smaller than the $\Ndata$-dimensional space of the binary
+    design. Especially as $\dim(\Omega)$ is typically $2$ or $3$.
+\end{itemize}
+However, it does come with a few drawbacks.
+\begin{itemize}
+  \item Gradient based optimization would require $\utility_{\design}$, which may not be
+    simple to formulate. In the binary setting, $\design$ enters $\Obs$ simply through a
+    selection matrix; here it's a coordinate parameter of an interpolation operator.
+  \item The observation error model $\mathcal{N}(0, \noisecov)$ would have to be defined
+    in the budget space, and the errors would have to selected in light of the fact that
+    the sensor could be placed anywhere in $\Omega$. Additionally, the notion of
+    correlation between sensors would have to be carefully considered.
+\end{itemize}
+
+%%%%%%%%%%%%%
+%\appendix
+%%%%%%%%%%%%%
+% Load Appendix sections 
+%\input{appendix}
+
+%%%%%%%%%%%%%
+\printbibliography
+%%%%%%%%%%%%%
+
+\end{document}

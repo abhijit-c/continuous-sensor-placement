@@ -1,0 +1,150 @@
+
+% TODO package and associated commands. Remove before submission.
+\usepackage[prependcaption]{todonotes}
+\newcommand{\abhi}[1]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green]{#1}}
+\makeatletter 
+\@mparswitchfalse%
+\makeatother
+\normalmarginpar
+
+\newcommand{\bs}{\boldsymbol}
+\def\ds{\displaystyle}
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\ut}[1]{\ensuremath{\tilde{#1}}}
+\newcommand{\ui}[1]{\ensuremath{\hat{#1}}}
+\newcommand{\bui}[1]{\ensuremath{\hat{\boldsymbol{#1}}}}
+\newcommand{\bu}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\mbu}[1]{\ensuremath{\mathbf{#1}}}
+
+\newcommand{\mat}[1]{\mathbf{#1}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\e}{\varepsilon}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% Variables
+\newcommand{\state}{u}
+\newcommand{\test}{p}
+\newcommand{\invparam}{m}
+\newcommand{\obs}{y}
+\newcommand{\noise}{\eta}
+\newcommand{\robustparam}{\theta}
+\newcommand{\avgrobustparam}{\overline{\robustparam}}
+\newcommand{\optrobustparam}{\robustparam^{\rm opt}}
+
+\newcommand{\vzero}{\mbf{0}}
+
+\newcommand{\design}{\xi}
+\newcommand{\optdesign}{\design^{\rm opt}}
+\newcommand{\alldesign}{\design^{\rm all}}
+\newcommand{\policy}{\mbf{p}}
+\newcommand{\scalarpolicy}{p}
+\newcommand{\policyweights}{\mbf{w}}
+\newcommand{\scalarpolicyweights}{w}
+\newcommand{\optpolicy}{\mbf{p}^{\rm opt}}
+\newcommand{\robustoptpolicy}{\mbf{p}_{\robustparam}^{\rm opt}}
+
+\newcommand{\stochoedgrad}{\mbf{g}}
+\newcommand{\scalarstochoedgrad}{g}
+
+\newcommand{\baseline}{b}
+\newcommand{\optbaseline}{b^{\rm opt}}
+
+%% Adjoint based differentiation
+\newcommand{\hatstate}{\hat{\state}}
+\newcommand{\hattest}{\hat{\test}}
+\newcommand{\hatinvparam}{\hat{\invparam}}
+
+\newcommand{\checkstate}{\check{\state}}
+\newcommand{\checktest}{\check{\test}}
+\newcommand{\checkinvparam}{\check{\invparam}}
+
+\newcommand{\tildestate}{\tilde{\state}}
+\newcommand{\tildetest}{\tilde{\test}}
+\newcommand{\tildeinvparam}{\tilde{\invparam}}
+
+% Operators
+\newcommand{\Sim}{\mc{S}}
+\newcommand{\Obs}{\mc{Q}}
+\newcommand{\POM}{\mc{F}}
+\newcommand{\JPOM}{\mc{J}}
+
+\newcommand{\KLD}{D_{\rm KL}}
+\newcommand{\EKLD}{\overline{\KLD}}
+
+\newcommand{\G}{\mc{G}}
+
+\newcommand{\Hm}{\mc{H}_{\rm m}}
+\newcommand{\ppHm}{\widetilde{\mc{H}}_{\rm m}}
+\newcommand{\I}{\mc{I}}
+
+\newcommand{\utility}{\mc{U}}
+\newcommand{\stochobj}{\mc{Y}}
+\newcommand{\proj}{P}
+
+\newcommand{\lowrankig}{\mc{U}^{\rm LRIG}}
+\newcommand{\lowrankeig}{\mc{U}^{\rm LREIG}}
+
+\newcommand{\Expectation}{\mathbb{E}} % expectation
+\renewcommand{\Probability}{\mathbb{P}} % probability
+\newcommand{\budget}{\mbf{Z}}
+
+\newcommand{\Bilaptheta}{\mc{K}}
+\newcommand{\bilaptheta}{\kappa}
+
+% Sizes
+\newcommand{\Ndata}{{\rm N_{d}}}
+\newcommand{\Nrobust}{{\rm N_{\robustparam}}}
+\newcommand{\Nsaa}{{\rm N_{SAA}}}
+\newcommand{\Nens}{{\rm N_{ens}}}
+\newcommand{\Nbudget}{{\rm N_{b}}}
+\newcommand{\Nsamples}{{\rm N_{s}}}
+
+% Spaces
+\newcommand{\statespace}{\ms{U}}
+\newcommand{\testspace}{\ms{U}'}
+\newcommand{\paramspace}{\ms{M}}
+%\newcommand{\dataspace}{\ms{Y}}
+\newcommand{\dataspace}{\mathbb{R}^{\Ndata}}
+\newcommand{\designspace}{\{0, 1\}^{\Ndata}}
+\newcommand{\domain}{\Omega}
+\newcommand{\budgetdesignspace}{Z_{\Nbudget}}
+\newcommand{\policyspace}{[0, 1]^{\Ndata}}
+\newcommand{\robustspace}{\Theta}
+\newcommand{\finiterobustspace}{\overline{\robustspace}}
+
+% Functions
+\newcommand{\inp}[2]{\left\langle #1, #2 \right\rangle}
+%\newcommand{\vinp}[2]{\inp{#1}{#2}_{\testspace}}
+
+% Probability Distributions
+%% prior
+\newcommand{\prior}{\pi_{\rm pr}}
+\newcommand{\priormeasure}{\mu_{\rm pr}}
+\newcommand{\priormean}{\invparam_{\rm pr}}
+\newcommand{\priorcov}{\mc{C}_{\rm pr}}
+\newcommand{\priorcovinv}{\priorcov^{-1}}
+\newcommand{\priorcovsqrt}{\priorcov^{1/2}}
+\newcommand{\priorcovinvsqrt}{\priorcov^{-1/2}}
+\newcommand{\cameronmartin}{\mc{E}}
+
+%% noise
+\newcommand{\likelihood}{\pi_{\rm like}}
+\newcommand{\noisecov}{\Gamma_{\rm n}}
+\newcommand{\noisecovinv}{\noisecov^{-1}}
+
+%% posterior
+\newcommand{\post}{\pi_{\rm post}}
+\newcommand{\postmeasure}{\mu_{\rm post}}
+\newcommand{\lapostmeasure}{\mu_{\rm post}^{\rm LA}}
+\newcommand{\postmean}{\invparam_{\rm post}}
+\newcommand{\postcov}{\mc{C}_{\rm post}}
+\newcommand{\postcovinv}{\mc{C}_{\rm post}^{-1}}

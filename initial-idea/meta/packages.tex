@@ -1,0 +1,58 @@
+\usepackage{amsfonts}
+\usepackage{amsopn}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{hhline}
+\usepackage{scalerel,stackengine}
+\usepackage{arydshln}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{collcell}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{physics}
+
+\usepackage{graphbox}
+\usepackage{setspace}
+
+\usepackage{fullpage}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% \allowdisplaybreaks
+
+% Quality of Life Packages
+% \usepackage{enumerate} %styles of enumeration
+% \usepackage{cprotect} %verbatim in caption
+% \usepackage{fancyvrb}
+% \usepackage{subfig}
+% \usepackage{float}
+% \usepackage{todonotes}
+
+% Bibliography Packages
+\usepackage[maxbibnames=99, backend=biber]{biblatex}
+\usepackage{breakcites}
+\usepackage[shortlabels]{enumitem}
+
+
+% Enable manipulating numbers in tables
+\newcolumntype{E}{>{\collectcell\usermacro}c<{\endcollectcell}}
+\newcommand\usermacro[1]{\pgfmathparse{10000*#1}\pgfmathprintnumber\pgfmathresult}
+
+%% Algorithm style, could alternatively use algpseudocode
+\usepackage{algorithm}
+\usepackage{comment}
+\usepackage{algpseudocode}
+
+% Add a serial/Oxford comma by default.
+\newcommand{\creflastconjunction}{, and~}
+
+

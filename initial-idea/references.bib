@@ -1,0 +1,42 @@
+ @article{Alexanderian_2021,
+  title        = {Optimal experimental design for infinite-dimensional Bayesian inverse problems governed by PDEs: a review},
+  volume       = {37},
+  issn         = {0266-5611, 1361-6420},
+  doi          = {10.1088/1361-6420/abe10c},
+  abstractnote = {We present a review of methods for optimal experimental design (OED) for Bayesian inverse problems governed by partial differential equations with infinite-dimensional parameters. The focus is on problems where one seeks to optimize the placement of measurement points, at which data are collected, such that the uncertainty in the estimated parameters is minimized. We present the mathematical foundations of OED in this context and survey the computational methods for the class of OED problems under study. We also outline some directions for future research in this area.},
+  number       = {4},
+  journal      = {Inverse Problems},
+  author       = {Alexanderian, Alen},
+  year         = {2021},
+  month        = apr,
+  pages        = {043001},
+  language     = {en}
+}
+
+ @article{Go_Chen_2024,
+  title        = {Accurate, scalable, and efficient Bayesian Optimal Experimental Design with derivative-informed neural operators},
+  url          = {http://arxiv.org/abs/2312.14810},
+  abstractnote = {We consider optimal experimental design (OED) problems in selecting the most informative observation sensors to estimate model parameters in a Bayesian framework. Such problems are computationally prohibitive when the parameter-to-observable (PtO) map is expensive to evaluate, the parameters are high-dimensional, and the optimization for sensor selection is combinatorial and high-dimensional. To address these challenges, we develop an accurate, scalable, and efficient computational framework based on derivative-informed neural operators (DINOs). The derivative of the PtO map is essential for accurate evaluation of the optimality criteria of OED in our consideration. We take the key advantage of DINOs, a class of neural operators trained with derivative information, to achieve high approximate accuracy of not only the PtO map but also, more importantly, its derivative. Moreover, we develop scalable and efficient computation of the optimality criteria based on DINOs and propose a modified swapping greedy algorithm for its optimization. We demonstrate that the proposed method is scalable to preserve the accuracy for increasing parameter dimensions and achieves high computational efficiency, with an over 1000× speedup accounting for both offline construction and online evaluation costs, compared to high-fidelity Bayesian OED solutions for a three-dimensional nonlinear convection-diffusion-reaction example with tens of thousands of parameters.},
+  note         = {arXiv:2312.14810 [cs, math, stat]},
+  number       = {arXiv:2312.14810},
+  publisher    = {arXiv},
+  author       = {Go, Jinwoo and Chen, Peng},
+  year         = {2024},
+  month        = mar,
+  language     = {en}
+}
+
+ @article{Wu_Chen_Ghattas_2023,
+  title        = {A Fast and Scalable Computational Framework for Large-Scale High-Dimensional Bayesian Optimal Experimental Design},
+  volume       = {11},
+  issn         = {2166-2525},
+  doi          = {10.1137/21M1466499},
+  abstractnote = {We develop a fast and scalable computational framework to solve Bayesian optimal experimental design problems governed by partial differential equations (PDEs) with application to optimal sensor placement by maximizing expected information gain (EIG). Such problems are particularly challenging due to the curse of dimensionality for high-dimensional parameters and the expensive solution of large-scale PDEs. To address these challenges, we exploit two fundamental properties: (1) the low-rank structure of the Jacobian of the parameter-to-observable map, to extract the intrinsically low-dimensional data-informed subspace, and (2) a series of approximations of the EIG that reduce the number of PDE solves while retaining high correlation with the true EIG. Based on these properties, we propose an efficient offline-online decomposition for the optimization problem. The offline stage dominates the cost and entails precomputing all components that require PDE solves. The online stage optimizes sensor placement and does not require any PDE solves. For the online stage, we propose a new greedy algorithm that first places an initial set of sensors using leverage scores and then swaps the selected sensors with other candidates until certain convergence criteria are met, which we call a swapping greedy algorithm. We demonstrate the efficiency and scalability of the proposed method by both linear and nonlinear inverse problems. In particular, we show that the number of required PDE solves is small, independent of the parameter dimension, and only weakly dependent on the data dimension for both problems.},
+  number       = {1},
+  journal      = {SIAM/ASA Journal on Uncertainty Quantification},
+  author       = {Wu, Keyi and Chen, Peng and Ghattas, Omar},
+  year         = {2023},
+  month        = mar,
+  pages        = {235–261},
+  language     = {en}
+}
